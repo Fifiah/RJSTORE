@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RJ STORE</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      background-color: #fefefe;
+      color: #333;
+    }
+
+    header {
+      background-color: #f8b195;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    nav {
+      background-color: #f67280;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      display: block;
+    }
+
+    nav a:hover {
+      background-color: #c06c84;
+    }
+
+    section {
+      padding: 40px 20px;
+    }
+
+    h2 {
+      color: #355c7d;
+    }
+
+    .produk-grid, .galeri-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .produk-item, .galeri-item, .testimoni {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      background-color: white;
+      text-align: center;
+    }
+
+    .produk-item img, .galeri-item img {
+      max-width: 100%;
+      border-radius: 6px;
+    }
+
+    .produk-item button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #6c5b7b;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .produk-item button:hover {
+      background-color: #355c7d;
+    }
+
+    footer {
+      background-color: #6c5b7b;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Modal keranjang */
+    #cartModal {
+      display: none;
+      position: fixed;
+      top: 10%;
+      right: 10px;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 20px;
+      width: 300px;
+      max-height: 400px;
+      overflow: auto;
+      z-index: 1000;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    #cartModal button {
+      background-color: #f67280;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    #cartModal button:hover {
+      background-color: #c06c84;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>RJ STORE</h1>
+    <p>Toko Serba Ada: Fashion, Aksesoris, Mainan, & Banyak Lagi!</p>
+  </header>
+
+  <nav>
+    <a href="#beranda">Beranda</a>
+    <a href="#tentang">Tentang Kami</a>
+    <a href="#produk">Produk/Jasa</a>
+    <a href="#galeri">Galeri</a>
+    <a href="#Kontak">Kontak</a>
+    <a href="#testimoni">Testimoni</a>
+    <a href="#" id="cartBtn">🛒 Keranjang (<span id="cartCount">0</span>)</a>
+  </nav>
+
+  <section id="beranda">
+    <h2>Selamat Datang di RJ STORE</h2>
+    <p>Kami menyediakan berbagai kebutuhan Anda mulai dari fashion, perlengkapan sekolah, kosmetik, . Temukan produk berkualitas dengan harga terjangkau!</p>
+  </section>
+
+  <section id="tentang">
+    <h2>Tentang Kami</h2>
+    <p>RJ STORE adalah toko terpercaya yang menjual berbagai produk pilihan untuk kebutuhan keluarga Indonesia. Kami hadir untuk memberikan kenyamanan berbelanja dan pelayanan terbaik untuk Anda.</p>
+  </section>
+
+  <section id="produk">
+    <h2>Produk & Jasa</h2>
+    <div class="produk-grid">
+      <div class="produk-item">
+        <img src="c:\Users\Personal\Downloads\baju.jpg" alt="Baju Tidur" />
+        <h4>Baju Tidur</h4>
+        <button onclick="addToCart('Baju Tidur 35K')">Tambah ke Keranjang</button>
+      </div>
+      <div class="produk-item">
+        <img src="c:\Users\Personal\Downloads\TAS.jfif" alt="Ransel" />
+        <h4>Ransel</h4>
+        <button onclick="addToCart('Baju Pendek')">Tambah ke Keranjang</button>
+      </div>
+      <div class="produk-item">
+        <img src="c:\Users\Personal\Downloads\baju3.jfif" alt="Celana Pria " />
+        <h4>Celana Pria</h4>
+        <button onclick="addToCart('Celana')">Tambah ke Keranjang</button>
+      </div>
+      <div class="produk-item">
+        <img src="c:\Users\Personal\Downloads\WhatsApp Image 2025-08-05 at 20.29.48.jpeg" alt="Perlengkapan Sekolah" />
+        <h4>Perlengkapan Sekolah</h4>
+        <button onclick="addToCart('Perlengkapan Sekolah')">Tambah ke Keranjang</button>
+      </div>
+      <div class="produk-item">
+        <img src="c:\Users\Personal\Downloads\WhatsApp Image 2025-08-05 at 20.29.49.jpeg" alt="Boneka Boba" />
+        <h4>Boneka Boba dgn byk warna</h4>
+        <button onclick="addToCart('Dekorasi Rumah')">Tambah ke Keranjang</button>
+      </div>
+      <div class="produk-item">
+        <img src="c:\Users\Personal\Downloads\casing.jfif" alt="Cassing Handphone" />
+        <h4>Cassing Handphone</h4>
+        <button onclick="addToCart('Cassing Handphone')">Tambah ke Keranjang</button>
+      </div>
+      <div class="produk-item">
+        <img src="c:\Users\Personal\Downloads\jepitan.jfif" alt="Jepit Rambut" />
+        <h4>Jepit Rambut</h4>
+        <button onclick="addToCart('Jepit Rambut')">Tambah ke Keranjang</button>
+      </div>
+      <div class="produk-item">
+        <img src="c:\Users\Personal\Downloads\kipas.jfif" alt="Kipas Angin Mini Portable" />
+        <h4>Kipas Angin Mini Portable</h4>
+        <button onclick="addToCart('Kipas Angin Mini')">Tambah ke Keranjang</button>
+      </div>
+      <div class="produk-item">
+        <img src="c:\Users\Personal\Downloads\jilbab.jfif" alt="Jilbab" />
+        <h4>Jilbab (Sport)</h4>
+        <button onclick="addToCart('Jilbab')">Tambah ke Keranjang</button>
+      </div>
+      <div class="produk-item">
+        <img src="c:\Users\Personal\Downloads\WhatsApp Image 2025-08-05 at 20.29.49 (1).jpeg" alt="Kemeja Wanita" />
+        <h4>Kemeja Wanita</h4>
+        <button onclick="addToCart('Baju')">Tambah ke Keranjang</button>
+      </div>
+      <div class="produk-item">
+        <img src="c:\Users\Personal\Downloads\WhatsApp Image 2025-08-06 at 04.48.41 (1).jpeg" alt="Jilbab Bella" />
+        <h4>Jilbab Bella Square</B></h4>
+        <button onclick="addToCart('Jilbab')">Tambah ke Keranjang</button>
+      </div>
+      <div class="produk-item">
+        <img src="c:\Users\Personal\Downloads\WhatsApp Image 2025-08-06 at 05.07.25 (1).jpeg" alt="Macam Macam Kosmetik" />
+        <h4>Macam Macam Kosmetik</h4>
+        <button onclick="addToCart('Jilbab')">Tambah ke Keranjang</button>
+      </div>
+      <div class="produk-item">
+        <img src="c:\Users\Personal\Downloads\WhatsApp Image 2025-08-06 at 05.07.24.jpeg" alt="Baju Atasan Wanita" />
+        <h4>Baju Atasan Wanita </h4>
+        <button onclick="addToCart('Jilbab')">Tambah ke Keranjang</button>
+      </div>
+      <div class="produk-item">
+        <img src="c:\Users\Personal\Downloads\WhatsApp Image 2025-08-06 at 05.07.25.jpeg" alt="Kaos Cowok" />
+        <h4>Kaos Cowok</h4>
+        <button onclick="addToCart('Jilbab')">Tambah ke Keranjang</button>
+      </div>
+    </div>
+
+
+  <section id="galeri">
+    <h2>Galeri Produk Unggulan</h2>
+    <div class="galeri-grid">
+      <div class="galeri-item"><img src="c:\Users\Personal\Downloads\WhatsApp Image 2025-08-05 at 20.29.49.jpeg" alt="Baju Atasan Wanita"></div>
+      <div class="galeri-item"><img src="c:\Users\Personal\Downloads\WhatsApp Image 2025-08-06 at 05.07.25 (1).jpeg "></div>
+      <div class="galeri-item"><img src="c:\Users\Personal\Downloads\WhatsApp Image 2025-08-05 at 20.29.49 (1).jpeg" alt="Kemeja Wanita"></div>
+      <div class="galeri-item"><img src="c:\Users\Personal\Downloads\jilbab.jfif" alt="jilbab Sport"></div>
+      <div class="galeri-item"><img src="c:\Users\Personal\Downloads\WhatsApp Image 2025-08-06 at 05.07.25.jpeg" alt="Kaos Cowok"></div>
+      <div class="galeri-item"><img src="c:\Users\Personal\Downloads\WhatsApp Image 2025-08-06 at 05.07.24.jpeg" alt="Baju Atasan Wanita"></div>
+        
+
+  <section id="Kontak">
+    <h2>Kontak</h2>
+    <h2>Hubungi Kami</h2>
+    <div class="contact">
+      <p>📧 Email: info@fashion-kosmetik.com</p>
+      <p>📱 WhatsApp: +62 878-3456-7890</p>
+      <p>📍 Lokasi: Jakarta,Lampung Indonesia</p>
+    </div>
+  </section>
+  
+  <section id="testimoni">
+    <h2>Testimoni </h2>
+    <div class="testimonial">
+      <p>"Desain fashion,& Kosmetiknya Bagus Serta Menarik.Saya tdk pernah Rugi Dan Kecewa Dalam Memesan Barang!"</p>
+      <strong>— Rina, Pemilik Toko Kecantikan</strong>
+    </div>
+    <div class="testimonial">
+      <p>"Kaos-kaosnya Sangat Bagus,Tidak Mudah Sobek,Bahannya Tebal,Saya Tidak Pernah kecewa Dan Rugi Dalam Memesan Barang Dalam Jumlah Besar!"</p>
+      <strong>— Bimo, Pemilik Toko Sablon</strong>
+    </div>
+  </section>
